@@ -5,7 +5,7 @@ import { fetchProductByBarcode } from '@/services/barcode-api';
 import { CameraView, useCameraPermissions } from 'expo-camera';
 import { router } from 'expo-router';
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, Alert, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, Alert, Platform, StyleSheet, TouchableOpacity, View } from 'react-native';
 
 export default function ScanScreen() {
   const [permission, requestPermission] = useCameraPermissions();
@@ -97,11 +97,14 @@ export default function ScanScreen() {
     );
   }
 
+  // On web, use front-facing camera (webcam), on mobile use back camera
+  const cameraFacing = Platform.OS === 'web' ? 'front' : 'back';
+
   return (
     <ThemedView style={styles.container}>
       <CameraView
         style={styles.camera}
-        facing="back"
+        facing={cameraFacing}
         onBarcodeScanned={scanned ? undefined : handleBarCodeScanned}
         barcodeScannerSettings={{
           barcodeTypes: ['ean13', 'ean8', 'upc_a', 'upc_e', 'code128', 'code39'],

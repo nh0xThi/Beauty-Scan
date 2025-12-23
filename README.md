@@ -78,9 +78,32 @@ npx eas build --profile development --platform ios
 npx eas build --profile development --platform android
 ```
 
-#### Option 2: Local Development
+#### Option 2: Web Development (Webcam Support)
 
-For local development without camera:
+The app supports webcam access on web browsers:
+
+```bash
+npm run web
+```
+
+Or:
+
+```bash
+npm run start
+# Then press 'w' to open in web browser
+```
+
+**Web Features**:
+- ✅ Webcam access for barcode scanning
+- ✅ Works in modern browsers (Chrome, Firefox, Safari, Edge)
+- ✅ Automatic camera permission requests
+- ✅ Uses front-facing webcam by default
+
+**Note**: Make sure to allow camera permissions when prompted by your browser.
+
+#### Option 3: Local Development (Mobile)
+
+For local development on mobile devices:
 
 ```bash
 npm run start
